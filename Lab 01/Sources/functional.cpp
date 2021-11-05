@@ -45,39 +45,6 @@ void applyMedianBlur(cv::Mat &src, cv::Mat&dst, int kernel_size) {
     applyMedianBlur(src, dst, kernel_size, kernel_size);
 }
 
-// cv::Mat convolution(cv::Mat &src, cv::Mat &kernel) {
-//     int height = src.rows, width = src.cols;  
-//     int kernel_size_x = kernel.rows, kernel_size_y = kernel.cols;
-//     cv::Mat dst = cv::Mat(height, width, src.channels() == 3 ? CV_8UC3 : CV_8UC1, cv::Scalar(0));
-
-//     for (int i = 0; i < height; ++i) {
-//         for (int j = 0; j < width; ++j) {
-//             double pixel[3] = {};
-//             for (int kx = -kernel_size_x / 2; kx <= (kernel_size_x - 1) / 2; ++kx) {
-//                 for (int ky = -kernel_size_y / 2; ky <= (kernel_size_y - 1) / 2; ++ky) {
-//                     int ki = i + kx, kj = j + ky;
-//                     if (0 <= ki && ki < height && 0 <= kj && kj < width) {
-//                         if (isGrayscale) pixel[0] += src.at<uchar>(ki, kj) * kernel[kx + kernel_size_x / 2][ky + kernel_size_y / 2];
-//                         else {
-//                             cv::Vec3b& pixel_src = src.at<cv::Vec3b>(ki, kj);
-//                             for (int k = 0; k < 3; ++k) {
-//                                 pixel[k] += pixel_src[k] * kernel[kx + kernel_size_x / 2][ky + kernel_size_y / 2];;
-//                             }
-//                         }    
-//                     }
-//                 }    
-//             }
-//             if (isGrayscale) {
-//                 dst.at<uchar>(i, j) = pixel[0];
-//             } else {
-//                 cv::Vec3b& pixel_dst = dst.at<cv::Vec3b>(i, j);
-//                 for (int k = 0; k < 3; ++k)
-//                     pixel_dst[k] = pixel[k];
-//             }
-//         }
-//     }   
-// }
-
 void applyMedianBlur(cv::Mat &src, cv::Mat&dst, int kernel_size_x, int kernel_size_y) {
     int height = src.rows;  
     int width = src.cols;  
