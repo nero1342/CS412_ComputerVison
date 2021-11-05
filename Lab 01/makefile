@@ -41,6 +41,9 @@ run: all
 	# Running...
 	$(MUTE)./Release/$(EXE)
 
+help: all 
+	$(MUTE)./Release/$(EXE) -h
+	
 clean:
 	# Cleaning object files...
 	$(MUTE)rm $(VTAG) -f $(OBJECTS)	
