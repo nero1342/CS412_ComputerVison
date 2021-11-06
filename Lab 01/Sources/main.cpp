@@ -15,12 +15,11 @@ const string keys = {
         "{@FileNameInput |<none>| path to input image   }"
 };
 
-Image image;
 
 int main(int argc, char **argv)
 {
     CommandLineParser parser(argc, argv, keys);
-    parser.about("Application name v1.0.0");
+    parser.about("CS412 - Computer Vision - Lab 01 - Image Manipulation");
     
     if (!parser.check()) {
         parser.printErrors();
@@ -34,6 +33,8 @@ int main(int argc, char **argv)
 
     string imagePath = parser.get<string>("@FileNameInput");
     // Read the image file
+    
+    Image image;
     if (image.readImage(imagePath)) {
         return 0;
     }

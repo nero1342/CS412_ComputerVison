@@ -1,5 +1,3 @@
-#include <opencv2/opencv.hpp>
-
 #include "callback.hpp"
 #include "functional.hpp"
 #include "image.hpp"
@@ -16,7 +14,7 @@ void Callback::Brightness(int iValueForBrightness, void *userData) {
     cout << "Brightness : Contrast=" << dContrast << ", Brightness=" << iBrightness << endl;
 
     //adjust the brightness and contrast
-    applyBrightnessAndContrast(image.image, image.dst, iBrightness, dContrast);
+    ImageManipulation::applyBrightnessAndContrast(image.image, image.dst, iBrightness, dContrast);
     //show the brightness and contrast adjusted image
     image.showImage();
 }
@@ -33,30 +31,30 @@ void Callback::Contrast(int iValueForContrast, void *userData) {
     cout << "Contrast : Contrast=" << dContrast << ", Brightness=" << iBrightness << endl;
 
     //adjust the brightness and contrast
-    applyBrightnessAndContrast(image.image, image.dst, iBrightness, dContrast);
+    ImageManipulation::applyBrightnessAndContrast(image.image, image.dst, iBrightness, dContrast);
     //show the brightness and contrast adjusted image
     image.showImage();
 }
 
-void Callback::AverageFilter(int kernel_size, void *userData) {
+void Callback::AverageFilter(int kernelSize, void *userData) {
     Image image = *( static_cast<Image*>(userData) );
     
-    cout << "AverageFilter : KernelSize=" << kernel_size<< endl;
+    cout << "AverageFilter : KernelSize=" << kernelSize<< endl;
 
-    applyMedianBlur(image.image, image.dst, kernel_size, kernel_size);
+    ImageManipulation::applyAverageBlur(image.image, image.dst, kernelSize, kernelSize);
 
     //show the brightness and contrast adjusted image
     image.showImage();
 }
 
-void Callback::GaussianFilterKernelSize(int kernel_size, void *userData) {
+void Callback::GaussianFilterKernelSize(int kernelSize, void *userData) {
     Image image = *( static_cast<Image*>(userData) );
     int iSigma = image.iSigma;
     double sigma = iSigma / 2.;
 
-    cout << "GaussianFilterKernelSize : KernelSize=" << kernel_size<<  " sigma=" << sigma << endl;
+    cout << "GaussianFilterKernelSize : KernelSize=" << kernelSize<<  " sigma=" << sigma << endl;
 
-    applyGaussianBlur(image.image, image.dst, kernel_size, kernel_size, sigma);
+    ImageManipulation::applyGaussianBlur(image.image, image.dst, kernelSize, kernelSize, sigma);
 
     //show the brightness and contrast adjusted image
     image.showImage();
@@ -64,12 +62,12 @@ void Callback::GaussianFilterKernelSize(int kernel_size, void *userData) {
 
 void Callback::GaussianFilterSigma(int iSigma, void *userData) {
     Image image = *( static_cast<Image*>(userData) );
-    int kernel_size = image.iKernelSize;
+    int kernelSize = image.iKernelSize;
     double sigma = iSigma / 2.;
 
-    cout << "GaussianFilterSigma : KernelSize=" << kernel_size<<  " sigma=" << sigma << endl;
+    cout << "GaussianFilterSigma : KernelSize=" << kernelSize<<  " sigma=" << sigma << endl;
 
-    applyGaussianBlur(image.image, image.dst, kernel_size, kernel_size, sigma);
+    ImageManipulation::applyGaussianBlur(image.image, image.dst, kernelSize, kernelSize, sigma);
 
     //show the brightness and contrast adjusted image
     image.showImage();

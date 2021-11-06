@@ -10,21 +10,33 @@ bool Image::readImage(string imagePath) {
         cout << "Could not open or find the image" << endl;
         return -1;
     }
+    initImage(imagePath);
+    return 0;
+}
 
+void Image::initImage(string imagePath) {
     src = image.clone();
     dst = src.clone();
     
     srcWindowName = "Input: " + imagePath; //Name of the window
     destWindowName = "Output: " + imagePath; //Name of the window
+    
+    // real brightness = iBrightness - 50
+    // real contrast = iContrast / 50 
     iBrightness = iContrast = 50;
+
+    // Kernel size for avg or gaussian filter 
     iKernelSize = 1;
+
+    // Sigma for gaussian filter; real sigma = iSigma / 2 
     iSigma = 2;
+
+    // Gray scale 
     isGrayscale = false;
-    return 0;
 }
 
 void Image::convertRGB2Grayscale() {
-    RGB2GRAY(dst);
+    ImageManipulation::RGB2GRAY(src, dst);
     image = dst.clone();
     isGrayscale = true;
 }

@@ -10,6 +10,7 @@ using namespace std ;
 
 class Image {
 public:
+    // Variable
     Mat image, src, dst;
     string srcWindowName, destWindowName;
     // For grayscale 
@@ -19,7 +20,9 @@ public:
     // For Avg filter and gauss filter
     int iKernelSize, iSigma;
 
+    // 
     bool readImage(string imagePath);    
+    void initImage(string imagePath);
     void getDestWindowName(CommandLineParser parser);
     void convertRGB2Grayscale();
     void changeBrightness();
